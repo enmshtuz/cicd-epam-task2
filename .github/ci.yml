@@ -32,5 +32,5 @@ jobs:
 
       - name: Package and upload content files to S3
         run: |
-          zip -j build.zip content/buildspec.yml content/index.html content/index.py 
+          zip -j build.zip content/buildspec.yml ./requirements.txt content/index.py 
           aws s3 cp build.zip "s3://${S3_BUCKET_NAME}/build.zip" --region "${AWS_REGION}"
