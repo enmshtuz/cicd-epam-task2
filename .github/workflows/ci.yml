@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_REGION: us-east-1
-      S3_BUCKET_NAME: cmtr-2dfktx7p-bucket-1795444617
+      S3_BUCKET_NAME: cmtr-2dfktx7p-bucket-1795456129
 
     steps:
       - name: Check out repository
