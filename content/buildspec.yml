@@ -1,0 +1,9 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - test -n "${LAMBDA_FUNCTION_NAME:-}" || { echo "LAMBDA_FUNCTION_NAME must be set in the CodeBuild project" >&2; exit 1; }
+      - zip -j lambda-deployment.zip index.py
+      - aws lambda update-function-code --function-name "$LAMBDA_FUNCTION_NAME" --zip-file fileb://lambda-deployment.zip --region "${AWS_REGION:-${AWS_DEFAULT_REGION:-us-east-1}}"
+      - aws lambda wait function-updated-v2 --function-name "$LAMBDA_FUNCTION_NAME" --region "${AWS_REGION:-${AWS_DEFAULT_REGION:-us-east-1}}"
